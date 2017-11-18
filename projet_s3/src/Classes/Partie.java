@@ -12,7 +12,7 @@ public class Partie {
 		this.estFinie = false;
 			// pion en bas au centre
 		
-		this.plateau = new Plateau ();	// plateau avec les deux pions posés
+		this.plateau = new Plateau ();	// plateau avec les deux pions posï¿½s
 		
 	}
 	
@@ -28,6 +28,7 @@ public class Partie {
 				this.estFinie=this.plateau.PartieEnCour();
 		}
 		
+		System.exit(0);		
 	}
 	
 	

@@ -18,25 +18,25 @@ public class Viewplateau extends JFrame  {
 	private JP3 tab[][]=new JP3[17][17];
 	
 	public Viewplateau() {
-		setTitle("Quoridor");// nom de la fenètre
-		setSize(700,700);//taille de la fennètre
-		setResizable(false);//modifier la taille de la fennètre
+		setTitle("Quoridor");// nom de la fenï¿½tre
+		setSize(700,700);//taille de la fennï¿½tre
+		setResizable(false);//modifier la taille de la fennï¿½tre
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);//position  d'origine
 		setVisible(true);
 		
 		
 		
-		JP3 content = new JP3();
+		JP3 content = new JP3(0,0);
 	    content.setPreferredSize(new Dimension(60, 60));
 	    content.setBackground(Color.WHITE);
-	    //On définit le layout manager
+	    //On dï¿½finit le layout manager
 	    content.setLayout(new GridBagLayout());
 			
-	    //L'objet servant à positionner les composants
+	    //L'objet servant  positionner les composants
 	    GridBagConstraints gbc = new GridBagConstraints();
 			
-	    //On positionne la case de départ du composant
+	    //On positionne la case de dï¿½part du composant
 
 	    //La taille en hauteur et en largeur
 	    gbc.gridheight = 1;
@@ -45,7 +45,7 @@ public class Viewplateau extends JFrame  {
 	    for (int y=0 ; y<tab.length ; y++) {
 			
 			for (int x=0 ; x<tab.length ; x++) {
-				tab[x][y] = new JP3();					// rempli le tableau de cases
+				tab[x][y] = new JP3(x,y);					// rempli le tableau de cases
 			}
 		}
 	    

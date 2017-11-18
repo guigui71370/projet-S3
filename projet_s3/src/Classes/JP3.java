@@ -9,10 +9,14 @@ import javax.swing.JPanel;
 public class JP3 extends JPanel implements MouseListener {
 	private boolean test=false;
 	private boolean estvalide=false;
-	public JP3() {
+	private int posx;
+	private int posy;
+	public JP3(int posx1,int posy2) {
 		super();
 		this.addMouseListener(this);
-	}
+		this.posx=posx1;
+		this.posy=posy2;
+		}
 	public boolean isTest() {
 		return test;
 	}
@@ -24,7 +28,7 @@ public class JP3 extends JPanel implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("ok");
+		//System.out.println("ok");
 		if(this.estvalide==true) {		
 			this.test=true;
 		}
@@ -60,5 +64,13 @@ public class JP3 extends JPanel implements MouseListener {
 		// TODO Auto-generated method stub
 		
 	}
+	public int getPosx() {
+		return posx;
+	}
+	public int getPosy() {
+		return posy;
+	}
+	
+	
 	
 }

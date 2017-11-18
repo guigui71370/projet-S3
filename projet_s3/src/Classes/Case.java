@@ -60,4 +60,12 @@ public class Case {
 		this.gagnantNoir = gagnantNoir;
 	}
 
+	public int getPosx() {
+		return posx;
+	}
+
+	public int getPosy() {
+		return posy;
+	}
+
 }

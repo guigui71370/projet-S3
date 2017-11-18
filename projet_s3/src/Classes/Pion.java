@@ -19,16 +19,11 @@ public class Pion {
 	
 	public boolean seDeplacer(int posX, int posY) {
 		
-			if(this.posx+2==posX && this.posy==posY||this.posx==posX && this.posy+2==posY||
-				this.posx-2==posX && this.posy==posY||this.posx==posX && this.posy-2==posY) { 
+			
 				this.posx=posX;
 				this.posy=posY;
 				return true;
-			}
-			else {
-				System.out.println("saisi incorecte le déplacement est ilégale");
-				return false;
-			}
+
 		
 		
 	}
