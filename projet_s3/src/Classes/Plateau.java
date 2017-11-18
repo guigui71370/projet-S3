@@ -28,7 +28,7 @@ public class Plateau {
 				tabCases[x][y] = new Case(x,y);					// rempli le tableau de cases
 			}
 		}
-		tabCases[8][0].setOccupee(true);// il y a le pion p1
+		tabCases[0][8].setOccupee(true);// il y a le pion p1
 		tabCases[16][8].setOccupee(true); // il y a le pion p2
 		
 		 tab=new Viewplateau();
