@@ -7,7 +7,7 @@ public class Case {
 	// ---------------------- ATTRIBUTS ---------------------
 	
 	private int posx, posy;
-	private boolean occupee = false, emplacementMur = false, gagnantBlanc = false, gagnantNoir = false;
+	private boolean occupee = false, emplacementMur = false, gagnantBlanc = false, gagnantNoir = false,estmorte;
 	
 	
 	// -------------------- CONSTRUCTEUR --------------------
@@ -20,10 +20,15 @@ public class Case {
 		if (this.posy == 0) gagnantNoir = true;// ligne du bas
 		if(posx%2!=0)emplacementMur=true;
 		if(posy%2!=0) {emplacementMur=true;}
+		if(posx%2!=0 && posy%2!=0)estmorte=true;
 	}
 	
 	// ---------------- METHODES / FONCTIONS ----------------
 	
+	public boolean isEstmorte() {
+		return estmorte;
+	}
+
 	public boolean estEmplacementMur () {
 		return this.emplacementMur;
 	}

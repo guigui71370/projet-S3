@@ -7,9 +7,11 @@ public class Pion {
 	private int posx;
 	private int posy;
 	
-	private int poseder=10;
+	private int murposseder=10;
 	// -------------------- CONSTRUCTEUR --------------------
 	
+
+
 	public Pion (int x, int y) {
 		this.posx = x;
 		this.posy = y;
@@ -43,7 +45,13 @@ public class Pion {
 	}
 	
 	
-	
+	public int getMurposseder() {
+		return murposseder;
+	}
+
+	public void setMurposseder(int murposeder) {
+		this.murposseder = murposeder;
+	}
 	
 	
 }

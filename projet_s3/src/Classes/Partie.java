@@ -27,8 +27,7 @@ public class Partie {
 		while(this.estFinie==false) {
 				this.estFinie=this.plateau.PartieEnCour();
 		}
-		
-		System.exit(0);		
+		System.exit(0);
 	}
 	
 	
