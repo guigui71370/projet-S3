@@ -7,13 +7,14 @@ import java.util.ArrayList;
 public class Plateau {
 
 	// ---------------------- ATTRIBUTS ---------------------
+	
 	private ArrayList<Case> voisin =new ArrayList<Case>();
-	private Case[][] tabCases = new Case [17][17];//[x][
+	private Case[][] tabCases = new Case [17][17];				//[y][x]
 	private Pion p1;
 	private Pion p2;
 	private Viewplateau tab;
-	private Utilisateur u1 = new Utilisateur(1,p1);	// Utilisateur haut
-	private Utilisateur u2 = new Utilisateur(2,p2);	// Utilisateur bas
+	private Utilisateur u1 = new Utilisateur(1,p1);				// Utilisateur haut
+	private Utilisateur u2 = new Utilisateur(2,p2);				// Utilisateur bas
 	
 	// -------------------- CONSTRUCTEUR --------------------
 	
@@ -21,35 +22,25 @@ public class Plateau {
 	    
 	    this.p1=new Pion (8,0);
 	    this.p2=new Pion (8,16);
-	   
 		for (int y=0 ; y<tabCases.length ; y++) {
 			
 			for (int x=0 ; x<tabCases.length ; x++) {
 				tabCases[x][y] = new Case(x,y);					// rempli le tableau de cases
 			}
 		}
-		tabCases[0][8].setOccupee(true);// il y a le pion p1
-		tabCases[16][8].setOccupee(true); // il y a le pion p2
-		
-		 tab=new Viewplateau();
-
-		
-		
+		tabCases[0][8].setOccupee(true);						// il y a le pion p1
+		tabCases[16][8].setOccupee(true); 						// il y a le pion p2
+		tab=new Viewplateau();
 	}
 	
 	// ---------------- METHODES / FONCTIONS ----------------
 	
 	public String toString () {
-		
-		
 		return "bla";
 	}
+	
 	public boolean PartieEnCour()  {
 		 Scanner sc=new Scanner(System.in);
-		 
-		
-		 
-		 
 		 System.out.println("que voulez voulez vous faire:");
 		 System.out.println("	1=deplacement ");
 		 System.out.println("	2= poser un mur");
@@ -75,17 +66,6 @@ public class Plateau {
 			System.out.println("bleu a gagner");
 			return true;
 		}
-		 
-		 
-		 
-		 
-		
-		 
-		 
-		 
-		 
-		 
-		
 		 System.out.println("que voulez voulez vous faire:");
 		 System.out.println("	1=deplacement ");
 		 System.out.println("	2= poser un mur");
@@ -111,45 +91,34 @@ public class Plateau {
 			System.out.println("vert a gagner");
 			return true;
 		}
-		
 		return false;
 	}
-	
-
-	
+		
 	public void tourp1() {
 		/*prochenement le programme se surement separer en 4 fonction*/
 		/*obtention de la liste des voisin d'une case se fera dan une autre fonction*/
-		
 		int compteur=0;
-		
 		ArrayList<JP3> list =new ArrayList<JP3>();
-		
-		
-		
 		int ancX=this.p1.getPosx();
 		int ancY=this.p1.getPosy();
 		this.voisin=this.estvoisin(ancX, ancY);
+		
 		for(int i=0;i<this.voisin.size();i++) {
 			list.add(this.tab.getjp3(this.voisin.get(i).getPosx(),this.voisin.get(i).getPosy()));
 		}
 		boolean tab1[]=new boolean [list.size()];
-		
 		for(int i=0;i<this.voisin.size();i++) {
 			list.get(i).setEstvalide(true);
 			
 		}
 		
-
-		
-		
-		
 		for (int i=0;i<tab1.length;i++) {
 			tab1[i]=list.get(i).isTest();;
 		}
-		int test=0 ;
 		
+		int test=0 ;
 		boolean ok=list.get(0).isTest();
+		
 		while(ok==false) {
 			try{
 				Thread.sleep(10); // sleep de 10 ms
@@ -169,9 +138,7 @@ public class Plateau {
 			}
 			
 		}
-		
-		
-		
+
 		while(tab1[compteur]==false) {
 			compteur+=1;
 		}
@@ -181,17 +148,12 @@ public class Plateau {
 			posX=list.get(compteur).getPosx();
 			posY=list.get(compteur).getPosy();
 		}
-		
-		
 		this.tabCases[ancX][ancY].setOccupee(false);
 		this.tab.setColor(ancX, ancY, Color.black);
 		this.tab.setColor(posX, posY, Color.blue);
 		this.tabCases[posX][posY].setOccupee(true);
 		this.p1.seDeplacer(posX, posY);
-		
-		
-		
-	
+
 		for(int i=0;i<this.voisin.size();i++) {
 			list.get(i).setEstvalide(false);
 			
@@ -208,9 +170,7 @@ public class Plateau {
 		int compteur=0;
 		
 		ArrayList<JP3> list =new ArrayList<JP3>();
-		
-		
-		
+
 		int ancX=this.p2.getPosx();
 		int ancY=this.p2.getPosy();
 		this.voisin=this.estvoisin(ancX, ancY);
@@ -223,11 +183,7 @@ public class Plateau {
 			list.get(i).setEstvalide(true);
 			
 		}
-		
-
-		
-		
-		
+				
 		for (int i=0;i<tab1.length;i++) {
 			tab1[i]=list.get(i).isTest();;
 		}
@@ -254,8 +210,6 @@ public class Plateau {
 			
 		}
 		
-		
-		
 		while(tab1[compteur]==false) {
 			compteur+=1;
 		}
@@ -265,16 +219,12 @@ public class Plateau {
 			posX=list.get(compteur).getPosx();
 			posY=list.get(compteur).getPosy();
 		}
-		
-		
+
 		this.tabCases[ancX][ancY].setOccupee(false);
 		this.tab.setColor(ancX, ancY, Color.black);
 		this.tab.setColor(posX, posY, Color.GREEN);
 		this.tabCases[posX][posY].setOccupee(true);
 		this.p2.seDeplacer(posX, posY);
-		
-		
-		
 	
 		for(int i=0;i<this.voisin.size();i++) {
 			list.get(i).setEstvalide(false);
@@ -288,7 +238,6 @@ public class Plateau {
 		this.voisin=new ArrayList<Case>();
 	}
 
-	
 	public void posermur(Pion p) {
 		int compteur=0;
 		ArrayList<Case> morte=new ArrayList<Case>();
@@ -297,7 +246,12 @@ public class Plateau {
 		for(int y=0;y<this.tabCases.length;y++) {
 			for(int x=0;x<this.tabCases.length;x++) {
 				if(this.tabCases[x][y].isEstmorte()==true && this.tabCases[x][y].estOccupee()==false) {
+					if((this.tabCases[x+1][y].estOccupee()==false && this.tabCases[x-1][y].estOccupee()==false) ) {
+					
 					morte.add(this.tabCases[x][y]);
+					}else if(this.tabCases[x][y-1].estOccupee()==false && this.tabCases[x][y+1].estOccupee()==false){
+						morte.add(this.tabCases[x][y]);
+					}
 				}
 			}	
 		}
@@ -311,11 +265,9 @@ public class Plateau {
 		for (int i=0;i<tab1.length;i++) {
 			tab1[i]=list.get(i).isTest();;
 		}
-		
-		
-		
+				
 		boolean ok=false;
-		while(ok==false) {
+		while(!ok) {
 			try{
 				Thread.sleep(10); // sleep de 10 ms
 				  
@@ -359,23 +311,16 @@ public class Plateau {
 			
 		}
 		
-		
-		
 		list =new ArrayList<JP3>();//supression des donnee
-		
-		
 		
 		if(this.tabCases[posXmorte-1][posYmorte].isEstmorte()==false && this.tabCases[posXmorte-1][posYmorte].estEmplacementMur()==true && this.tabCases[posXmorte-1][posYmorte].estOccupee()==false  &&this.tabCases[posXmorte+1][posYmorte].estOccupee()==false) {
 			enplacementmur.add(this.tabCases[posXmorte-1][posYmorte]);
 		}
-		
-		
+
 		if(this.tabCases[posXmorte+1][posYmorte].isEstmorte()==false && this.tabCases[posXmorte+1][posYmorte].estEmplacementMur()==true && this.tabCases[posXmorte-1][posYmorte].estOccupee()==false  &&this.tabCases[posXmorte+1][posYmorte].estOccupee()==false) {
 			enplacementmur.add(this.tabCases[posXmorte+1][posYmorte]);
 		}
-		
-		
-		
+
 		if(this.tabCases[posXmorte][posYmorte-1].isEstmorte()==false && this.tabCases[posXmorte][posYmorte-1].estEmplacementMur()==true && this.tabCases[posXmorte][posYmorte-1].estOccupee()==false  &&this.tabCases[posXmorte][posYmorte+1].estOccupee()==false) {
 			enplacementmur.add(this.tabCases[posXmorte][posYmorte-1]);
 		}
@@ -383,17 +328,12 @@ public class Plateau {
 		if(this.tabCases[posXmorte][posYmorte+1].isEstmorte()==false && this.tabCases[posXmorte][posYmorte+1].estEmplacementMur()==true && this.tabCases[posXmorte][posYmorte-1].estOccupee()==false  &&this.tabCases[posXmorte][posYmorte+1].estOccupee()==false) {
 			enplacementmur.add(this.tabCases[posXmorte][posYmorte+1]);
 		}
-		
-		
+
 		for(int i=0;i<enplacementmur.size();i++) {
 			list.add(this.tab.getjp3(enplacementmur.get(i).getPosx(),enplacementmur.get(i).getPosy()));
 		}
 		boolean tab2[]=new boolean [list.size()];
-		
-		
-		
-		
-		
+				
 		for(int i=0;i<list.size();i++) {
 			list.get(i).setEstvalide(true);
 		}	
@@ -448,9 +388,6 @@ public class Plateau {
 			posXmur2=posXmorte;
 			posYmur2=posYmorte-1;
 		}
-		
-		
-		
 	
 		this.tabCases[posXmur1][posYmur1].setOccupee(true);
 		
@@ -465,9 +402,7 @@ public class Plateau {
 			list.get(i).setTest(false);
 			
 		}
-		
-		
-		
+
 		list =new ArrayList<JP3>();//supression des donnee
 		if(this.arbitre()==true) {
 			this.tab.setColor(posXmur1, posYmur1, Color.cyan);
@@ -482,13 +417,6 @@ public class Plateau {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 	private boolean arbitre() {
 		// TODO a codee
 		
@@ -497,28 +425,51 @@ public class Plateau {
 	}
 
 	public ArrayList<Case> estvoisin(int posx,int posy) {
-		/*structure de base a codee pour calcul les voisin des case x et y
-		 *action :calcule les case  voisine d'une autre qui sont acessible a partir des 
-		 * coordonee doner en param�tre
-		 *retourne la liste des voisin 
-		 */
-		ArrayList<Case> courant=new ArrayList<Case>();
-		//
-		courant.add(this.tabCases[0][2]);
-		courant.add(this.tabCases[4][0]);
-		courant.add(this.tabCases[6][8]);
+		// Renvoie la liste des voisins accessibles depuis la case dont les positions sont en entrée
 		
+		ArrayList<Case> courant = new ArrayList<Case>();
+		
+		if (posy<=14 && this.tabCases[posx][posy+1].estOccupee() == false) { 											// S'il n'est pas sur un bord et pas de mur qui bloque
+			if (this.tabCases[posx][posy+2].estOccupee() == false) {													// Si la case est libre
+				courant.add(this.tabCases[posx][posy+2]); } 														// On l'ajoute
+			else { 																									// Si la case est occupée par le pion adverse
+				if (posx<=14 && this.tabCases[posx+1][posy+2].estOccupee() == false) {								// S'il n'y a pas de mur à droite du pion adverse
+					courant.add(this.tabCases[posx+2][posy+2]); }													// On ajoute case à droite de l'adversaire
+				if (posx>=2 && this.tabCases[posx-1][posy+2].estOccupee() == false) {									// S'il n'y a pas de mur à gauche de l'adversaire
+					courant.add(this.tabCases[posx-2][posy+2]); }													// On ajoute la case à gauche de l'adversaire
+			}
+		}
+		if (posy>=2 && this.tabCases[posx][posy-1].estOccupee() == false) {
+			if (this.tabCases[posx][posy-2].estOccupee() == false) {
+				courant.add(this.tabCases[posx][posy-2]); }
+			else {
+				if (posx<=14 && this.tabCases[posx+1][posy-2].estOccupee() == false) {
+					courant.add(this.tabCases[posx+2][posy-2]); }
+				if (posx>=2 && this.tabCases[posx-1][posy-2].estOccupee() == false) {
+					courant.add(this.tabCases[posx-2][posy-2]); }
+			}
+		}
+		if (posx<=14 && this.tabCases[posx+1][posy].estOccupee() == false) {///////
+			if (this.tabCases[posx+2][posy].estOccupee() == false) {
+				courant.add(this.tabCases[posx+2][posy]); }
+			else {
+				if (posy >= 2 && this.tabCases[posx+2][posy-1].estOccupee() == false) {
+					courant.add(this.tabCases[posx+2][posy-2]); }
+				if (posy <= 14 && this.tabCases[posx+2][posy+1].estOccupee() == false) {
+					courant.add(this.tabCases[posx+2][posy+2]); }
+			}
+		}
+		if (posx>=2 && this.tabCases[posx-1][posy].estOccupee() == false) {
+			if (this.tabCases[posx-2][posy].estOccupee() == false) {
+				courant.add(this.tabCases[posx-2][posy]); }
+			else {
+				if (posy>=2 && this.tabCases[posx-2][posy-1].estOccupee() == false) {
+					courant.add(this.tabCases[posx-2][posy-2]); }
+				if (posy<=14 && this.tabCases[posx-2][posy+1].estOccupee() == false) {
+					courant.add(this.tabCases[posx-2][posy+2]); }
+				}
+		}
 		return courant;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 	
 }
